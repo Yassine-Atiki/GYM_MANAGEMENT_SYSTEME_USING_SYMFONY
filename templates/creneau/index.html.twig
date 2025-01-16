@@ -19,7 +19,6 @@
                 <td>{{ creneau.dateDebut ? creneau.dateDebut|date('d/m/Y H:i') : '' }}</td>
                 <td>{{ creneau.dateFin ? creneau.dateFin|date('d/m/Y H:i') : '' }}</td>
                 <td>
-                    <a href="{{ path('creneau_show', {'id': creneau.id}) }}" class="btn btn-info">Voir</a>
                     <a href="{{ path('creneau_edit', {'id': creneau.id}) }}" class="btn btn-warning">Modifier</a>
                 </td>
             </tr>

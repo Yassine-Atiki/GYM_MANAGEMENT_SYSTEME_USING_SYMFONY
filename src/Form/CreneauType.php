@@ -30,6 +30,9 @@ class CreneauType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Creneau::class,
+            'csrf_protection' => true, // Activation de la protection CSRF
+            'csrf_field_name' => '_token', // Nom du champ CSRF
+            'csrf_token_id'   => 'creneau_form', // Identifiant unique pour le jeton CSRF
         ]);
     }
 }

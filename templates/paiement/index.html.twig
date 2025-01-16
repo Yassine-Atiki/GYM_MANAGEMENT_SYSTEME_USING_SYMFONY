@@ -19,7 +19,6 @@
                 <td>{{ paiement.montant }} €</td>
                 <td>{{ paiement.datePaiement ? paiement.datePaiement|date('d/m/Y H:i') : '' }}</td>
                 <td>
-                    <a href="{{ path('paiement_show', {'id': paiement.id}) }}" class="btn btn-info">Voir</a>
                     <a href="{{ path('paiement_edit', {'id': paiement.id}) }}" class="btn btn-warning">Modifier</a>
                 </td>
             </tr>

@@ -1,29 +1,44 @@
+{# templates/abonne/index.html.twig #}
 {% extends 'base.html.twig' %}
 
+{% block title %}Liste des Abonnés{% endblock %}
+
 {% block body %}
-    <h1>Liste des abonnés</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container mt-4">
+        <h1 class="mb-4">Liste des Abonnés</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Mot de passe</th>
+                    <th>Rôles</th> <!-- Changé pour afficher les rôles -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for abonne in abonnes %}
                 <tr>
                     <td>{{ abonne.nom }}</td>
                     <td>{{ abonne.prenom }}</td>
                     <td>{{ abonne.email }}</td>
+                    <td>{{ abonne.password }}</td>
+                    <td>{{ abonne.roles|join(', ') }}</td> <!-- Affiche les rôles sous forme de chaîne -->
                     <td>
-                        <a href="{{ path('abonne_show', {'id': abonne.id}) }}">Voir</a>
-                        <a href="{{ path('abonne_edit', {'id': abonne.id}) }}">Modifier</a>
+                        <a href="{{ path('abonne_show', {'id': abonne.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                        <a href="{{ path('abonne_edit', {'id': abonne.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
                     </td>
                 </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">Aucun abonné trouvé</td>
+                </tr>
             {% endfor %}
-        </tbody>
-    </table>
-    <a href="{{ path('abonne_new') }}">Créer un nouvel abonné</a>
+            </tbody>
+        </table>
+
+        <a href="{{ path('abonne_new') }}" class="btn btn-success">Créer un nouvel abonné</a>
+    </div>
 {% endblock %}
