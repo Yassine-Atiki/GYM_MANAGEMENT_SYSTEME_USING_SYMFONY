@@ -1,0 +1,38 @@
+{# templates/abonne/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'abonné{% endblock %}
+
+{% block body %}
+    <h1>Détails de l'abonné</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ abonne.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ abonne.email }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ abonne.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ abonne.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Rôles</th>
+                <td>{{ abonne.roles ? abonne.roles|json_encode : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('abonne_index') }}" class="btn btn-secondary">Retour à la liste</a>
+    <a href="{{ path('abonne_edit', {'id': abonne.id}) }}" class="btn btn-warning">Modifier</a>
+
+    {{ include('abonne/_delete_form.html.twig') }}
+{% endblock %}

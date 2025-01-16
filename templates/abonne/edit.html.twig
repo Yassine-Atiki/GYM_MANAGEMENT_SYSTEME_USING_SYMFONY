@@ -1,0 +1,17 @@
+{# templates/abonne/edit.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'abonné{% endblock %}
+
+{% block body %}
+    <h1>Modifier l'abonné</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }} {# Affiche tous les champs du formulaire #}
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('abonne_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+
+    {{ include('abonne/_delete_form.html.twig') }}
+{% endblock %}

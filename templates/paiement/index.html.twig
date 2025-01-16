@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Paiements{% endblock %}
+
+{% block body %}
+    <h1>Liste des Paiements</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Montant</th>
+                <th>Date de paiement</th>
+                <th>Abonné</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for paiement in paiements %}
+            <tr>
+                <td>{{ paiement.montant }} €</td>
+                <td>{{ paiement.datePaiement ? paiement.datePaiement|date('d/m/Y H:i') : '' }}</td>
+                <td>{{ paiement.abonne.email }}</td>
+                <td>
+                    <a href="{{ path('paiement_show', {'id': paiement.id}) }}" class="btn btn-info">Voir</a>
+                    <a href="{{ path('paiement_edit', {'id': paiement.id}) }}" class="btn btn-warning">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun paiement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('paiement_new') }}" class="btn btn-success">Enregistrer un nouveau paiement</a>
+{% endblock %}
