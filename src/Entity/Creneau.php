@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+
 use App\Repository\CreneauRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Abonne; 
 
 #[ORM\Entity(repositoryClass: CreneauRepository::class)]
 class Creneau
@@ -48,4 +50,22 @@ class Creneau
 
         return $this;
     }
+
+    #[ORM\ManyToOne(targetEntity: Abonne::class)]
+    private ?Abonne $abonne = null;
+
+    public function getAbonne(): ?Abonne
+    {
+        return $this->abonne;
+    }
+
+    public function setAbonne(?Abonne $abonne): self
+    {
+        $this->abonne = $abonne;
+        return $this;
+    }
+
+    
 }
+
+
