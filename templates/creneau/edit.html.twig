@@ -1,0 +1,22 @@
+{# templates/creneau/edit.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un Créneau{% endblock %}
+
+{% block body %}
+    <h1>Modifier un Créneau</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+
+    {# Formulaire de suppression #}
+    <form method="post" action="{{ path('creneau_delete', {'id': creneau.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce créneau ?');" style="display: inline-block;">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ creneau.id) }}">
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+    </form>
+
+    <a href="{{ path('creneau_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

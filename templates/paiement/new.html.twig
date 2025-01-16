@@ -1,0 +1,16 @@
+{# templates/paiement/new.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Paiement{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau Paiement</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Créer</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('paiement_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

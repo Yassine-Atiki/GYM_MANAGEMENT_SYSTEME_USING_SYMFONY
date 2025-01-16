@@ -10,8 +10,7 @@
             <tr>
                 <th>Montant</th>
                 <th>Date de paiement</th>
-                <th>Abonné</th>
-                <th>Actions</th>
+                <th>Actions</th> <!-- Supprimer la colonne "Abonné" -->
             </tr>
         </thead>
         <tbody>
@@ -19,7 +18,6 @@
             <tr>
                 <td>{{ paiement.montant }} €</td>
                 <td>{{ paiement.datePaiement ? paiement.datePaiement|date('d/m/Y H:i') : '' }}</td>
-                <td>{{ paiement.abonne.email }}</td>
                 <td>
                     <a href="{{ path('paiement_show', {'id': paiement.id}) }}" class="btn btn-info">Voir</a>
                     <a href="{{ path('paiement_edit', {'id': paiement.id}) }}" class="btn btn-warning">Modifier</a>
@@ -27,7 +25,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">Aucun paiement trouvé</td>
+                <td colspan="3">Aucun paiement trouvé</td> <!-- Mettre à jour colspan à 3 -->
             </tr>
         {% endfor %}
         </tbody>
