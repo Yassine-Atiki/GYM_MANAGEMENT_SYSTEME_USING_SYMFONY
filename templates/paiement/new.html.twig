@@ -9,8 +9,9 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+        <p></p>
         <button type="submit" class="btn btn-primary">Créer</button>
     {{ form_end(form) }}
-
+    <p></p>
     <a href="{{ path('paiement_index') }}" class="btn btn-secondary">Retour à la liste</a>
 {% endblock %}

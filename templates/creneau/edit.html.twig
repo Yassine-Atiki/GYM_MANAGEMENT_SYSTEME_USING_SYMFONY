@@ -9,9 +9,10 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+        <p></p>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     {{ form_end(form) }}
-
+    <p></p>
     {# Formulaire de suppression #}
     <form method="post" action="{{ path('creneau_delete', {'id': creneau.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce créneau ?');" style="display: inline-block;">
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ creneau.id) }}">
