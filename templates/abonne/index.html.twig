@@ -1,4 +1,5 @@
 {# templates/abonne/index.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des Abonnés{% endblock %}
@@ -27,6 +28,11 @@
                     <td>
                         <a href="{{ path('abonne_show', {'id': abonne.id}) }}" class="btn btn-info btn-sm">Voir</a>
                         <a href="{{ path('abonne_edit', {'id': abonne.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        {# Formulaire de suppression #}
+                        <form method="post" action="{{ path('abonne_delete', {'id': abonne.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet abonné ?');" style="display: inline-block;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ abonne.id) }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
             {% else %}

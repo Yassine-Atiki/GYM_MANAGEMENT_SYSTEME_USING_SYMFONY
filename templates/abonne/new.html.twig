@@ -1,15 +1,65 @@
 {# templates/abonne/new.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Créer un nouvel abonné{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouvel abonné</h1>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <h1 class="text-center">Créer un nouvel abonné</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }} {# Affiche tous les champs du formulaire #}
-        <button type="submit" class="btn btn-success">Enregistrer</button>
-    {{ form_end(form) }}
+            {{ form_start(form) }}
+                {# Afficher les erreurs globales du formulaire #}
+                {% if form.vars.errors is not empty %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
 
-    <a href="{{ path('abonne_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+                {# Champ pour l'email #}
+                <div class="mb-3">
+                    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+                {# Champ pour le nom #}
+                <div class="mb-3">
+                    {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.nom) }}
+                </div>
+
+                {# Champ pour le prénom #}
+                <div class="mb-3">
+                    {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.prenom) }}
+                </div>
+
+                {# Champ pour les rôles #}
+                <div class="mb-3">
+                    {{ form_label(form.roles, 'Rôles', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.roles, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.roles) }}
+                </div>
+
+                {# Champ pour le mot de passe (sous forme de points) #}
+                <div class="mb-3">
+                    {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.password) }}
+                </div>
+
+                {# Bouton de soumission #}
+                <button type="submit" class="btn btn-success w-100">Enregistrer</button>
+            {{ form_end(form) }}
+
+            {# Lien pour retourner à la liste des abonnés #}
+            <p class="text-center mt-3">
+                <a href="{{ path('abonne_index') }}" class="btn btn-secondary">Retour à la liste</a>
+            </p>
+        </div>
+    </div>
 {% endblock %}

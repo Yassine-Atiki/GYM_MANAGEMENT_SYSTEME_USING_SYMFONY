@@ -5,19 +5,46 @@
 {% block title %}Modifier un Créneau{% endblock %}
 
 {% block body %}
-    <h1>Modifier un Créneau</h1>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <h1 class="text-center">Modifier un Créneau</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <p></p>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-    {{ form_end(form) }}
-    <p></p>
-    {# Formulaire de suppression #}
-    <form method="post" action="{{ path('creneau_delete', {'id': creneau.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce créneau ?');" style="display: inline-block;">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ creneau.id) }}">
-        <button type="submit" class="btn btn-danger">Supprimer</button>
-    </form>
+            {{ form_start(form) }}
+                {# Afficher les erreurs globales du formulaire #}
+                {% if form.vars.errors is not empty %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
 
-    <a href="{{ path('creneau_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                {# Champ pour la date et heure de début #}
+                <div class="mb-3">
+                    {{ form_label(form.dateDebut, 'Date et heure de début', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.dateDebut) }}
+                </div>
+
+                {# Champ pour la date et heure de fin #}
+                <div class="mb-3">
+                    {{ form_label(form.dateFin, 'Date et heure de fin', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.dateFin, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.dateFin) }}
+                </div>
+
+                {# Bouton de soumission #}
+                <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+            {{ form_end(form) }}
+
+            {# Formulaire de suppression #}
+            <form method="post" action="{{ path('creneau_delete', {'id': creneau.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce créneau ?');" class="mt-3">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ creneau.id) }}">
+                <button type="submit" class="btn btn-danger w-100">Supprimer</button>
+            </form>
+
+            {# Lien pour retourner à la liste des créneaux #}
+            <p class="text-center mt-3">
+                <a href="{{ path('creneau_index') }}" class="btn btn-secondary">Retour à la liste</a>
+            </p>
+        </div>
+    </div>
 {% endblock %}

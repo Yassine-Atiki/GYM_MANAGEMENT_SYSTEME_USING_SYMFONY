@@ -5,13 +5,40 @@
 {% block title %}Nouveau Paiement{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau Paiement</h1>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <h1 class="text-center">Créer un nouveau Paiement</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <p></p>
-        <button type="submit" class="btn btn-primary">Créer</button>
-    {{ form_end(form) }}
-    <p></p>
-    <a href="{{ path('paiement_index') }}" class="btn btn-secondary">Retour à la liste</a>
+            {{ form_start(form) }}
+                {# Afficher les erreurs globales du formulaire #}
+                {% if form.vars.errors is not empty %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+
+                {# Champ pour le montant #}
+                <div class="mb-3">
+                    {{ form_label(form.montant, 'Montant', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.montant, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.montant) }}
+                </div>
+
+                {# Champ pour la date de paiement #}
+                <div class="mb-3">
+                    {{ form_label(form.datePaiement, 'Date de paiement', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.datePaiement, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.datePaiement) }}
+                </div>
+
+                {# Bouton de soumission #}
+                <button type="submit" class="btn btn-primary w-100">Créer</button>
+            {{ form_end(form) }}
+
+            {# Lien pour retourner à la liste des paiements #}
+            <p class="text-center mt-3">
+                <a href="{{ path('paiement_index') }}" class="btn btn-secondary">Retour à la liste</a>
+            </p>
+        </div>
+    </div>
 {% endblock %}

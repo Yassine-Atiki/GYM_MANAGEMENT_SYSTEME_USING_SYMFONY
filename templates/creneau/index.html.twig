@@ -1,34 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Créneaux{% endblock %}
+{% block title %}Planification et Réservation des Créneaux{% endblock %}
 
 {% block body %}
-    <h1>Liste des Créneaux</h1>
+<div class="container mt-5">
+    <h1 class="text-center">Planification et Réservation des Créneaux</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Actions</th> <!-- Supprimer la colonne "Abonné" -->
+                <th>Date et heure de début</th>
+                <th>Date et heure de fin</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for creneau in creneaux %}
+            {% for creneau in creneaux %}
+                <tr>
+                    <td>{{ creneau.DateDebut|date('d/m/Y H:i') }}</td>  {# Formater la date et l'heure #}
+                    <td>{{ creneau.DateFin|date('d/m/Y H:i') }}</td>    {# Formater la date et l'heure #}
+                    <td>
+                        <a href="{{ path('creneau_edit', {'id': creneau.id}) }}" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucun créneau disponible</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
             <tr>
-                <td>{{ creneau.dateDebut ? creneau.dateDebut|date('d/m/Y H:i') : '' }}</td>
-                <td>{{ creneau.dateFin ? creneau.dateFin|date('d/m/Y H:i') : '' }}</td>
-                <td>
-                    <a href="{{ path('creneau_edit', {'id': creneau.id}) }}" class="btn btn-warning">Modifier</a>
+                <td colspan="3">
+                    {# Bouton pour réserver un nouveau créneau (aligné sous la colonne "Date et heure de début") #}
+                    <a href="{{ path('creneau_new') }}" class="btn btn-primary">Réserver un nouveau créneau</a>
                 </td>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun créneau trouvé</td> <!-- Mettre à jour colspan à 3 -->
-            </tr>
-        {% endfor %}
-        </tbody>
+        </tfoot>
     </table>
-
-    <a href="{{ path('creneau_new') }}" class="btn btn-success">Créer un nouveau créneau</a>
+</div>
 {% endblock %}
