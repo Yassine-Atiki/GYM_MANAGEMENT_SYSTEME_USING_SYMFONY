@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\AbonneRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: AbonneRepository::class)]
-class Abonne
+class Abonne implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -91,5 +93,12 @@ class Abonne
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function eraseCredentials(): void {}
+
+    public function getUserIdentifier(): string
+    {
+        return $this->nom;  // Retourne 'nom' comme identifiant
     }
 }

@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">Inscription</h1>
+
+            {{ form_start(registrationForm) }}
+                {# Champ CSRF (obligatoire pour la sécurité) #}
+                {{ form_widget(registrationForm._token) }}
+
+                {# Champ Nom d'utilisateur #}
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom d'utilisateur</label>
+                    {{ form_widget(registrationForm.nom, {
+                        'attr': {
+                            'class': 'form-control',
+                            'id': 'nom',
+                            'required': 'required'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.nom) }}
+                </div>
+
+                {# Champ Email #}
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    {{ form_widget(registrationForm.email, {
+                        'attr': {
+                            'class': 'form-control',
+                            'id': 'email',
+                            'required': 'required'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+
+                {# Champ Mot de passe #}
+                <div class="mb-3">
+                    <label for="plainPassword" class="form-label">Mot de passe</label>
+                    {{ form_widget(registrationForm.plainPassword, {
+                        'attr': {
+                            'class': 'form-control',
+                            'id': 'plainPassword',
+                            'required': 'required'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.plainPassword) }}
+                </div>
+
+                {# Champ Rôle (optionnel) #}
+                <div class="mb-3">
+                    <label for="roles" class="form-label">Rôle</label>
+                    {{ form_widget(registrationForm.roles, {
+                        'attr': {
+                            'class': 'form-control',
+                            'id': 'roles'
+                        }
+                    }) }}
+                    {{ form_errors(registrationForm.roles) }}
+                </div>
+
+                {# Bouton de soumission #}
+                <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+
+                {# Lien vers la page de connexion #}
+                <p class="text-center mt-3">
+                    Vous avez déjà un compte ? <a href="{{ path('app_login') }}">Connectez-vous</a>.
+                </p>
+            {{ form_end(registrationForm, {'render_rest': false}) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
