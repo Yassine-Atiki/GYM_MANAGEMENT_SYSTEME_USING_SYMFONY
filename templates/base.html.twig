@@ -1,3 +1,5 @@
+{# templates/base.html.twig #}
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,10 +23,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="{{ path('app_register') }}" class="btn btn-success">S'inscrire</a>
-                    </li> 
+                <ul class="navbar-nav me-auto"> <!-- Utilisation de me-auto pour pousser les éléments à droite -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                     </li>
@@ -38,6 +37,16 @@
                         <a class="nav-link" href="{{ path('creneau_index') }}">Créneaux</a>
                     </li>
                     {# Ajoutez d'autres liens de navigation ici #}
+                </ul>
+
+                {# Boutons "Se connecter" et "S'inscrire" alignés à droite #}
+                <ul class="navbar-nav ms-auto"> <!-- Utilisation de ms-auto pour pousser les boutons à droite -->
+                    <li class="nav-item">
+                        <a href="{{ path('app_login') }}" class="btn btn-outline-light me-2">Se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_register') }}" class="btn btn-success">S'inscrire</a>
+                    </li>
                 </ul>
             </div>
         </div>
