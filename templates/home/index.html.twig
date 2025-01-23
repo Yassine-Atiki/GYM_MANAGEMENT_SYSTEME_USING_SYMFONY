@@ -1,9 +1,61 @@
 {# templates/home/index.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}GymFlow{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        /* Réinitialisation des marges et paddings */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .hero-section {
+            background-image: url('{{ asset('images/pexels-binyaminmellish-116079.jpg') }}'); /* Chemin de l'image */
+            background-size: cover; /* Couvre toute la zone */
+            background-position: center; /* Centre l'image */
+            background-repeat: no-repeat; /* Empêche la répétition de l'image */
+            height: 100vh; /* 100% de la hauteur de la fenêtre */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .cta-buttons {
+            margin-top: 30px;
+        }
+        .cta-buttons .btn {
+            margin: 0 10px;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h1>Votre succès commence ici. Bienvenue sur GymFlow !</h1>
-    <p>Ceci est la page d'accueil.</p>
+    <div class="hero-section">
+        <div>
+            <h1>Votre succès commence ici.</h1>
+            <p>Bienvenue sur GymFlow, votre partenaire fitness !</p>
+            <div class="cta-buttons">
+                <a href="{{ path('app_register') }}" class="btn btn-primary btn-lg">S'inscrire</a>
+                <a href="{{ path('app_login') }}" class="btn btn-success btn-lg">Se connecter</a>
+                <a href="{{ path('creneau_index') }}" class="btn btn-warning btn-lg">Voir les créneaux</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

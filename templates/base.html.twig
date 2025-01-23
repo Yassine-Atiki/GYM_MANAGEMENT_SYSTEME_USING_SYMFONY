@@ -53,7 +53,7 @@
     </nav>
 
     {# Contenu principal de la page #}
-    <div class="container mt-4">
+    <main>
         {# Affichage des messages flash #}
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
@@ -68,7 +68,7 @@
 
         {# Bloc pour le contenu spécifique à chaque page #}
         {% block body %}{% endblock %}
-    </div>
+    </main>
 
     {# Pied de page #}
     {# Liens vers les fichiers JavaScript #}

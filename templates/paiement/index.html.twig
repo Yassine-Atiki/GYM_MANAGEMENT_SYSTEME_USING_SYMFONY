@@ -3,32 +3,36 @@
 {% block title %}Liste des Paiements{% endblock %}
 
 {% block body %}
-    <h1>Liste des Paiements</h1>
+    <div class="container">
+        <h1 class="my-4">Liste des Paiements</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Montant</th>
-                <th>Date de paiement</th>
-                <th>Actions</th> <!-- Supprimer la colonne "Abonné" -->
-            </tr>
-        </thead>
-        <tbody>
-        {% for paiement in paiements %}
-            <tr>
-                <td>{{ paiement.montant }} €</td>
-                <td>{{ paiement.datePaiement ? paiement.datePaiement|date('d/m/Y H:i') : '' }}</td>
-                <td>
-                    <a href="{{ path('paiement_edit', {'id': paiement.id}) }}" class="btn btn-warning">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Aucun paiement trouvé</td> <!-- Mettre à jour colspan à 3 -->
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Montant</th>
+                        <th>Date de paiement</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for paiement in paiements %}
+                    <tr>
+                        <td>{{ paiement.montant }} €</td>
+                        <td>{{ paiement.datePaiement ? paiement.datePaiement|date('d/m/Y H:i') : '' }}</td>
+                        <td>
+                            <a href="{{ path('paiement_edit', {'id': paiement.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">Aucun paiement trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-    <a href="{{ path('paiement_new') }}" class="btn btn-success">Enregistrer un nouveau paiement</a>
+        <a href="{{ path('paiement_new') }}" class="btn btn-success mt-3">Enregistrer un nouveau paiement</a>
+    </div>
 {% endblock %}
