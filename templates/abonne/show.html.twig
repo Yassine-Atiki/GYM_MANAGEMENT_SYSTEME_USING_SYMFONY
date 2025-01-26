@@ -4,33 +4,40 @@
 {% block title %}Détails de l'abonné{% endblock %}
 
 {% block body %}
-    <h1>Détails de l'abonné</h1>
+    <div class="container">
+        <h1 class="my-4">Détails de l'abonné</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ abonne.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ abonne.email }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ abonne.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ abonne.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Rôles</th>
-                <td>{{ abonne.roles ? abonne.roles|json_encode : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ abonne.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ abonne.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ abonne.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Prénom</th>
+                            <td>{{ abonne.prenom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Rôles</th>
+                            <td>{{ abonne.roles ? abonne.roles|json_encode : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <a href="{{ path('abonne_index') }}" class="btn btn-secondary">Retour à la liste</a>
-    <p></p>
+        <div class="mt-3">
+            <a href="{{ path('abonne_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+    </div>
 {% endblock %}
